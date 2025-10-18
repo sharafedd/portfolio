@@ -11,6 +11,7 @@ import ProjectGrid from "@/components/ProjectGrid";
 import ContactForm from "@/components/ContactForm";
 import HeroSection from "@/components/HeroSection";
 import ContactSection from "@/components/ContactSection";
+import BackgroundMusic from "@/components/BackgroundMusic";
 import { ArrowUp, Github, Linkedin, Mail, Twitter } from "lucide-react";
 import {
   education,

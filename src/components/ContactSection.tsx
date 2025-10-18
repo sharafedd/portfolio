@@ -73,7 +73,8 @@ export default function ContactSection() {
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         className="
-          absolute bottom-20 right-10
+          absolute bottom-30 right-6
+          sm:bottom-25 sm:right-10
           bg-[#06b6d4] hover:bg-[#0ea5e9] text-white
           rounded-lg flex items-center justify-center
           shadow-[0_0_15px_rgba(6,182,212,0.25)] transition

@@ -10,18 +10,34 @@ import { PortfolioItem } from "@/data/content";
 export default function ExperienceCarousel({ items }: { items: PortfolioItem[] }) {
   const ref = useRef<HTMLDivElement>(null);
   const [timelineHeight, setTimelineHeight] = useState(600);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Auto scroll to center on mount
+  // Detect mobile layout
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  // Auto scroll: center on desktop, start at first card on mobile
   useEffect(() => {
     if (ref.current) {
       const containerWidth = ref.current.scrollWidth;
       const viewportWidth = window.innerWidth;
-      ref.current.scrollTo({
-        left: (containerWidth - viewportWidth) / 2 - 160,
-        behavior: "smooth",
-      });
+
+      if (isMobile) {
+        // start from first card
+        ref.current.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        // center on desktop
+        ref.current.scrollTo({
+          left: (containerWidth - viewportWidth) / 2 - 160,
+          behavior: "smooth",
+        });
+      }
     }
-  }, []);
+  }, [isMobile]);
 
   // Dynamically calculate height from card size
   useEffect(() => {
@@ -147,34 +163,36 @@ export default function ExperienceCarousel({ items }: { items: PortfolioItem[] }
         </div>
       </section>
 
-      {/* Scroll buttons */}
-      <div className="absolute -bottom-10 flex w-full justify-between px-10">
-        {/* Left button */}
-        <button
-          onClick={scrollLeft}
-          className="
-            w-10 h-10 flex items-center justify-center
-            rounded-full bg-purple-600/80 hover:bg-purple-500
-            text-white shadow-lg shadow-purple-500/30
-            transition-all duration-300 hover:scale-110
-          "
-        >
-          <ArrowLeft size={20} />
-        </button>
+      {/* Scroll buttons — hidden on mobile */}
+      {!isMobile && (
+        <div className="absolute -bottom-10 flex w-full justify-between px-10">
+          {/* Left button */}
+          <button
+            onClick={scrollLeft}
+            className="
+              w-10 h-10 flex items-center justify-center
+              rounded-full bg-purple-600/80 hover:bg-purple-500
+              text-white shadow-lg shadow-purple-500/30
+              transition-all duration-300 hover:scale-110
+            "
+          >
+            <ArrowLeft size={20} />
+          </button>
 
-        {/* Right button */}
-        <button
-          onClick={scrollRight}
-          className="
-            w-10 h-10 flex items-center justify-center
-            rounded-full bg-purple-600/80 hover:bg-purple-500
-            text-white shadow-lg shadow-purple-500/30
-            transition-all duration-300 hover:scale-110
-          "
-        >
-          <ArrowRight size={20} />
-        </button>
-      </div>
+          {/* Right button */}
+          <button
+            onClick={scrollRight}
+            className="
+              w-10 h-10 flex items-center justify-center
+              rounded-full bg-purple-600/80 hover:bg-purple-500
+              text-white shadow-lg shadow-purple-500/30
+              transition-all duration-300 hover:scale-110
+            "
+          >
+            <ArrowRight size={20} />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
