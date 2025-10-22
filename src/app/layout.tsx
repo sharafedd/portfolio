@@ -2,6 +2,7 @@ import "./globals.css";
 import { Inter, Space_Mono } from "next/font/google";
 import BackgroundMusic from "@/components/BackgroundMusic";
 import Link from "next/link";
+import { Analytics } from "@vercel/analytics/next"; // ✅ correct import
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const mono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-mono" });
@@ -28,6 +29,9 @@ export default function RootLayout({
 
         {/* === Page Content === */}
         {children}
+
+        {/* === Analytics === */}
+        <Analytics />
       </body>
     </html>
   );
