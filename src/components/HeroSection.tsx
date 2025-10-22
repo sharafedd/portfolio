@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter, Download } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -34,12 +34,7 @@ export default function HeroSection() {
         </motion.div>
 
         {/* Title and Description */}
-        <h1
-          className="
-            text-4xl md:text-6xl font-bold mb-3 text-white
-            overflow-hidden whitespace-nowrap border-r-4 border-cyan-400
-            animate-typing"
-        >
+        <h1 className="text-4xl md:text-6xl font-bold mb-3 text-white overflow-hidden whitespace-nowrap border-r-4 border-cyan-400 animate-typing">
           Sharaf E. Boukhezer
         </h1>
         <p className="text-neutral-400 max-w-2xl mx-auto mb-10 leading-relaxed">
@@ -47,7 +42,7 @@ export default function HeroSection() {
         </p>
 
         {/* Social Links */}
-        <div className="flex gap-6 justify-center">
+        <div className="flex gap-6 justify-center mb-8">
           <Link
             href="mailto:SharafEddine.Boukhezer@gmail.com"
             target="_blank"
@@ -77,6 +72,18 @@ export default function HeroSection() {
             <Twitter size={24} />
           </Link>
         </div>
+
+        {/* View CV Button */}
+        <motion.a
+          href="/Sharaf_E_Boukhezer.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="flex items-center gap-2 bg-cyan-500 text-black font-medium px-5 py-2.5 rounded-full hover:bg-cyan-400 transition text-sm shadow-[0_0_15px_rgba(6,182,212,0.25)]"
+        >
+          <Download size={18} /> View CV
+        </motion.a>
       </motion.div>
     </section>
   );

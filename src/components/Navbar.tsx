@@ -10,7 +10,6 @@ const sections = [
   { id: "education", label: "Education" },
   { id: "certifications", label: "Courses" },
   { id: "awards", label: "Awards" },
-  { id: "contact", label: "Contact" },
 ];
 
 export default function Navbar() {
