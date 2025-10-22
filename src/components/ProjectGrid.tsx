@@ -36,6 +36,7 @@ export default function ProjectGrid({
                 w-full max-w-sm
               "
             >
+              {/* Image */}
               <Image
                 src={proj.img}
                 alt={proj.title}
@@ -43,11 +44,31 @@ export default function ProjectGrid({
                 height={240}
                 className="rounded-t-2xl object-cover w-full h-40"
               />
+
+              {/* Content */}
               <div className="p-4">
                 <h3 className="font-semibold text-white mb-1">
                   {proj.title}
                 </h3>
-                <p className="text-sm text-neutral-400">{proj.desc}</p>
+
+                {/* Description preview (3 lines only) */}
+                <p
+                  className="
+                    text-sm text-neutral-400 leading-relaxed
+                    line-clamp-3
+                    overflow-hidden
+                    text-ellipsis
+                    max-h-[4.5rem]
+                    transition-all
+                    group-hover:text-neutral-300
+                  "
+                >
+                  {proj.desc
+                    .replace(/\*\*/g, "") // remove bold markdown
+                    .replace(/<br\s*\/?>/g, " ") // replace line breaks
+                    .replace(/\s+/g, " ") // collapse spaces
+                    .trim()}
+                </p>
               </div>
             </Card>
           </Link>

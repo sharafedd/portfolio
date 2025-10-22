@@ -23,8 +23,8 @@ export default function ContactSection() {
         {/* Short message */}
         <p className="text-neutral-300 max-w-xl mx-auto mt-6 mb-8 leading-relaxed">
           I love connecting with people who build, create, and think differently. 
-          Whether you’re starting something new or looking to collaborate on bold ideas, 
-          feel free to reach out — let’s make something great together.
+          Whether you’re starting something new or looking to collaborate, 
+          feel free to reach out.
         </p>
 
         {/* Contact button */}

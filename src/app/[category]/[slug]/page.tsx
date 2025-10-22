@@ -1,20 +1,38 @@
 "use client";
 
+import React from "react";
 import { allItems } from "@/data/content";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+// ✅ Markdown + plugins
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
+import rehypeRaw from "rehype-raw";
+import rehypeSanitize from "rehype-sanitize";
+
 export default function DetailPage({
   params,
 }: {
-  params: { category: string; slug: string };
+  params: Promise<{ category: string; slug: string }>;
 }) {
-  const { category, slug } = params;
-  const categoryData = allItems[category as keyof typeof allItems];
-  const item = categoryData?.find((x) => x.slug === slug);
+  // ✅ Unwrap Next.js 15 async params
+  const { category, slug } = React.use(params);
 
+  // ✅ Narrow type so TS knows it’s a PortfolioItem array
+  const categoryData =
+    allItems[category as "education" | "experience" | "projects"] as {
+      slug: string;
+      title: string;
+      img: string;
+      desc: string;
+      date?: string;
+    }[];
+
+  const item = categoryData.find((x) => x.slug === slug);
   if (!item) return notFound();
 
   return (
@@ -44,7 +62,7 @@ export default function DetailPage({
           />
         </motion.div>
 
-        {/* Title + Info */}
+        {/* Title */}
         <motion.h1
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -54,19 +72,38 @@ export default function DetailPage({
           {item.title}
         </motion.h1>
 
+        {/* Date */}
         {item.date && (
           <p className="text-sm text-neutral-500 mb-6">{item.date}</p>
         )}
 
-        {/* Description */}
-        <motion.p
+        {/* Markdown Description */}
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
           className="leading-relaxed text-neutral-300"
         >
-          {item.desc}
-        </motion.p>
+          <div
+            className="
+              prose
+              prose-invert
+              max-w-none
+              prose-ul:list-disc
+              prose-ol:list-decimal
+              prose-li:marker:text-cyan-400
+              prose-ul:pl-6
+              prose-ol:pl-6
+            "
+          >
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm, remarkBreaks]}
+              rehypePlugins={[rehypeRaw, rehypeSanitize]}
+            >
+              {item.desc}
+            </ReactMarkdown>
+          </div>
+        </motion.div>
       </div>
     </main>
   );

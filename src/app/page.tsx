@@ -2,17 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import SectionTitle from "@/components/SectionTitle";
 import Card from "@/components/Card";
 import FilterTabs from "@/components/FilterTabs";
 import ExperienceCarousel from "@/components/ExperienceCarousel";
 import ProjectGrid from "@/components/ProjectGrid";
-import ContactForm from "@/components/ContactForm";
 import HeroSection from "@/components/HeroSection";
 import ContactSection from "@/components/ContactSection";
-import BackgroundMusic from "@/components/BackgroundMusic";
-import { ArrowUp, Github, Linkedin, Mail, Twitter } from "lucide-react";
 import {
   education,
   experience,
@@ -21,19 +17,50 @@ import {
   awards,
 } from "@/data/content";
 import { useState } from "react";
+import Navbar from "@/components/Navbar";
 
 export default function PortfolioPage() {
   // Skill categories
   const skillCategories: Record<string, string[]> = {
-    Languages: ["Python", "Java", "C", "Haskell"],
-    Frameworks: ["React", "Next.js", "Angular"],
-    "AI / ML": ["TensorFlow", "PyTorch", "BERT", "Transformers", "CNN", "RNN", "LSTM"],
-    Tools: ["Docker", "Kubernetes", "Git", "Firebase", "PostgreSQL", "MongoDB", "LaTeX"],
+    Languages: ["Python", "C", "Java", "TypeScript", "HTML/CSS", "SQL", "Haskell"],
+    Frameworks: [
+      "Next.js",
+      "React",
+      "Angular",
+      "JHipster",
+      "PyTorch",
+      "TensorFlow",
+      "Keras",
+      "OpenCV",
+      "Tailwind CSS",
+    ],
+    Tools: [
+      "Git",
+      "VS Code",
+      "Supabase",
+      "Docker",
+      "Firebase",
+      "Jupyter Notebook",
+      "Google Colab",
+      "Plotly",
+    ],
+    Technologies: [
+      "Machine Learning",
+      "Deep Learning",
+      "Reinforcement Learning",
+      "Full Stack Development",
+      "Cloud Deployment",
+      "Data Visualization",
+      "Secure Payment Systems",
+    ],
   };
   const [selected, setSelected] = useState("Languages");
 
   return (
     <main className="text-white">
+      <div className="absolute top-6 left-1/2 -translate-x-1/2 z-50">
+        <Navbar />
+      </div>
       {/* Top-right contact button */}
       <div className="absolute top-6 right-6 z-50">
         <Link
@@ -48,17 +75,15 @@ export default function PortfolioPage() {
       <HeroSection />
 
       {/* ===== PROFILE ===== */}
-      <section className="bg-[#1a1a1a] px-6 py-20 text-center">
+      <section id="about" className="bg-[#1a1a1a] px-6 py-20 text-center">
         <SectionTitle>About <span className="text-cyan-400">Me</span></SectionTitle>
         <p className="max-w-3xl mx-auto text-neutral-400 leading-relaxed">
-          I am a Computer Science student at the University of Birmingham with a passion for
-          AI-driven technologies, dependable systems, and innovative engineering. I combine research,
-          creativity, and precision to develop scalable solutions with global impact.
+          I’m a Computer Science student at the University of Birmingham passionate about AI-driven technologies, secure systems, and innovative engineering. I combine research, creativity, and technical precision to build scalable solutions that make a global impact.
         </p>
       </section>
 
       {/* ===== SKILLS ===== */}
-      <section className="bg-[#222222] px-6 py-20 text-center">
+      <section id="skills" className="bg-[#222222] px-6 py-20 text-center">
         <SectionTitle>Technical <span className="text-cyan-400">Expertise</span></SectionTitle>
         <FilterTabs
           categories={Object.keys(skillCategories)}
@@ -77,19 +102,19 @@ export default function PortfolioPage() {
       </section>
 
       {/* ===== PROJECTS ===== */}
-      <section className="bg-[#242424] px-6 py-20">
+      <section id="projects" className="bg-[#242424] px-6 py-20">
         <SectionTitle>Recent <span className="text-cyan-400">Projects</span></SectionTitle>
         <ProjectGrid items={projects} />
       </section>
 
       {/* ===== EXPERIENCE ===== */}
-      <section className="bg-[#1f1f1f] px-6 py-20 relative">
+      <section id="experience" className="bg-[#1f1f1f] px-6 py-20 relative">
         <SectionTitle>Professional <span className="text-purple-500">Experience</span></SectionTitle>
         <ExperienceCarousel items={experience} />
       </section>
 
       {/* ===== EDUCATION ===== */}
-      <section className="bg-gradient-to-b from-[#1c1c1c] to-[#262626] px-6 py-20">
+      <section id="education" className="bg-gradient-to-b from-[#1c1c1c] to-[#262626] px-6 py-20">
         <SectionTitle>
           <span className="text-white">Education</span>
         </SectionTitle>
@@ -127,11 +152,24 @@ export default function PortfolioPage() {
                 <h3 className="text-lg font-semibold text-white group-hover:text-cyan-400 transition">
                   {edu.title}
                 </h3>
+
                 {edu.date && (
                   <p className="text-sm text-neutral-500 mt-1">{edu.date}</p>
                 )}
-                <p className="text-neutral-400 text-sm mt-3 leading-relaxed">
-                  {edu.desc}
+
+                {/* Description Preview (3 lines only) */}
+                <p
+                  className="
+                    text-neutral-400 text-sm mt-3 leading-relaxed
+                    line-clamp-3
+                    overflow-hidden
+                    text-ellipsis
+                    max-h-[4.5rem]
+                    transition-all
+                    group-hover:text-neutral-300
+                  "
+                >
+                  {edu.desc.replace(/\*\*/g, "").replace(/<br\s*\/?>/g, " ")}
                 </p>
               </div>
             </Link>
@@ -140,7 +178,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* ===== COURSES & CERTIFICATIONS ===== */}
-      <section className="bg-[#2b2b2b] px-6 py-20">
+      <section id="certifications" className="bg-[#2b2b2b] px-6 py-20">
         <SectionTitle>Courses & <span className="text-cyan-400">Certifications</span></SectionTitle>
         <div className="overflow-x-auto">
           <table className="w-full max-w-4xl mx-auto border-collapse text-left text-neutral-300 text-sm">
@@ -163,7 +201,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* ===== AWARDS ===== */}
-      <section className="bg-[#1a1a1a] px-6 py-20">
+      <section id="awards" className="bg-[#1a1a1a] px-6 py-20">
         <SectionTitle>Honours & <span className="text-cyan-400">Achievements</span></SectionTitle>
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {awards.map((a, i) => (
@@ -179,7 +217,9 @@ export default function PortfolioPage() {
       </section>
 
       {/* ...other sections */}
-      <ContactSection />
+      <div id="contact">
+        <ContactSection />
+      </div>
     </main>
   );
 }
