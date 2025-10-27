@@ -91,12 +91,12 @@ export default function ContactSection() {
           © {new Date().getFullYear()} Sharaf&nbsp;E.&nbsp;Boukhezer | All rights reserved.
         </p>
         <a
-          href="https://sharafedd.github.io/portfolio"
+          href="https://github.com/sharafedd/portfolio"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-cyan-400 transition mt-2 md:mt-0"
         >
-          sharafedd.github.io/portfolio
+          github.com/sharafedd/portfolio
         </a>
       </footer>
     </section>
