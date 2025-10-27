@@ -78,7 +78,7 @@ export default function PortfolioPage() {
       <section id="about" className="bg-[#1a1a1a] px-6 py-20 text-center">
         <SectionTitle>About <span className="text-cyan-400">Me</span></SectionTitle>
         <p className="max-w-3xl mx-auto text-neutral-400 leading-relaxed">
-          I’m a Computer Science student at the University of Birmingham passionate about AI-driven technologies, secure systems, and innovative engineering. I combine research, creativity, and technical precision to build scalable solutions that make a global impact.
+          Computer Science student at the University of Birmingham focused on AI-driven technologies, secure systems, and innovative engineering. Combines research and creativity to build scalable solutions that make a global impact.
         </p>
       </section>
 

@@ -62,7 +62,7 @@ My exchange at HKUST was a globally enriching experience that expanded my unders
 **Modules Studied**  
     - Database Management Systems  
     - Business and Innovation in Technology <br />
-These courses offered a comprehensive look into how data systems and business innovation co-evolve. The Database module honed my skills in query optimization, relational schema design, and concurrency control, while the Innovation module challenged me to evaluate how emerging technologies shape competitive advantage. <br />
+These courses offered a comprehensive look into how data systems and business innovation co-evolve. The Database module strengthened my skills in query optimization, relational schema design, and concurrency control, while the Innovation module challenged me to evaluate how emerging technologies shape competitive advantage. <br />
 **Projects and Research Highlights**  
     - Conducted a research-based analysis on Lockheed Martin’s technological diversification and R&D investment strategy.  
     - Developed a case study on data-driven entrepreneurship for Southeast Asian markets. <br />
