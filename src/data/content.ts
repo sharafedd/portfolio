@@ -274,7 +274,7 @@ Proposed a mobile app prototype that encourages sustainable living through gamif
 export const certifications = [
   { title: "Chinese Language Course – University of Birmingham", date: "Sep 2024 – Present" },
   { title: "Creating a Business Plan – LinkedIn Learning", date: "Aug 2023" },
-  { title: "JPMorgan Chase Software Engineering Virtual Experience", date: "Jun 2023" },
+  { title: "JPMorgan Chase Software Engineering Virtual Experience", date: "Aug 2023" },
   { title: "Kubernetes University Student Bootcamp – Red Hat", date: "Jul 2023" },
 ];
 

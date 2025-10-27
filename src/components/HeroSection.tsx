@@ -38,7 +38,7 @@ export default function HeroSection() {
           Sharaf E. Boukhezer
         </h1>
         <p className="text-neutral-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-          AI, Software and Security - building intelligent systems and innovative solutions.
+          AI, Software and Security - Building intelligent systems and innovative solutions.
         </p>
 
         {/* Social Links */}
